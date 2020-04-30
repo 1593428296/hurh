@@ -9,7 +9,7 @@
         <%@include file="/WEB-INF/include-sidebar.jsp" %>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <ol class="breadcrumb">
-                <li><a href="admin/mainPage.html">首页</a></li>
+                <li><a href="admin/mainPage.html">首页1</a></li>
                 <li><a href="admin/getPageBean.html">数据列表</a></li>
                 <li class="active">新增</li>
             </ol>
