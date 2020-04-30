@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurh.crowd.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="Admin">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LOGIN_ACCT" jdbcType="VARCHAR" property="loginAcct" />
+    <result column="USER_PSWD" jdbcType="VARCHAR" property="userPswd" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="CREATE_TIME" jdbcType="CHAR" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, LOGIN_ACCT, USER_PSWD, USER_NAME, EMAIL, CREATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="AdminExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_ADMIN
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_ADMIN
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_ADMIN
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="AdminExample">
+    delete from T_ADMIN
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="Admin">
+    insert into T_ADMIN (ID, LOGIN_ACCT, USER_PSWD, 
+      USER_NAME, EMAIL, CREATE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{loginAcct,jdbcType=VARCHAR}, #{userPswd,jdbcType=VARCHAR},
+      #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Admin">
+    insert into T_ADMIN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loginAcct != null">
+        LOGIN_ACCT,
+      </if>
+      <if test="userPswd != null">
+        USER_PSWD,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAcct != null">
+        #{loginAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="userPswd != null">
+        #{userPswd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="AdminExample" resultType="java.lang.Long">
+    select count(*) from T_ADMIN
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_ADMIN
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginAcct != null">
+        LOGIN_ACCT = #{record.loginAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPswd != null">
+        USER_PSWD = #{record.userPswd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_ADMIN
+    set ID = #{record.id,jdbcType=VARCHAR},
+      LOGIN_ACCT = #{record.loginAcct,jdbcType=VARCHAR},
+      USER_PSWD = #{record.userPswd,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="Admin">
+    update T_ADMIN
+    <set>
+      <if test="loginAcct != null">
+        LOGIN_ACCT = #{loginAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="userPswd != null">
+        USER_PSWD = #{userPswd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Admin">
+    update T_ADMIN
+    set LOGIN_ACCT = #{loginAcct,jdbcType=VARCHAR},
+      USER_PSWD = #{userPswd,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getAdminByKeyWord" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT a.id as id,
+           a.login_acct AS login_acct,	<!--	登录账号:varchar2(255)	-->
+           a.user_pswd AS user_pswd,	<!--	登录密码:varchar2(32)	-->
+           a.user_name AS user_name,	<!--	昵称:varchar2(255)	-->
+           a.email AS email,	<!--	邮件地址:varchar2(255)	-->
+           a.create_time AS create_time	<!--	创建时间:char(19)	-->
+      FROM t_admin a
+     WHERE 1 = 1
+       and a.email like '%'||#{inputStr}||'%'
+        or a.user_name like '%'||#{inputStr}||'%'
+        or a.email like '%'||#{inputStr}||'%'
+  </select>
+
+  <select id="getSeq_T_admin_id" resultMap="BaseResultMap">
+        SELECT seq_admin_id.nextval as id FROM dual
+  </select>
+</mapper>

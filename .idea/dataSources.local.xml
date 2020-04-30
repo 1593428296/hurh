@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="@localhost" uuid="bfeaf5e7-b65a-4a85-acb7-5541918019ad">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>hurh</user-name>
+    </data-source>
+    <data-source name="@localhost [2]" uuid="40c862b3-f84b-4c9f-b3d4-fdd8ad0953fc">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>hurh</user-name>
+    </data-source>
+  </component>
+</project>
