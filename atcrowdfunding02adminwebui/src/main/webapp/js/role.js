@@ -66,12 +66,12 @@ function fillTableBody(pageInfo) {
 
         var roleId = role.id;
         var roleName = role.name;
-        var checkBox = "<th width='30'><input type='checkbox'></th>";
+        var checkBox = "<th width='30'><input  id='"+roleId+"' class='itemBox' type='checkbox'></th>";
         var roleNameId = "<td>"+ roleName+"</td>";
         var numberId = "<td>"+(i+1)+"</td>";
         var checkBtn = "<button type='button' class='btn btn-success btn-xs'><i class=' glyphicon glyphicon-check'></i></button>";
-        var pencilBtn = "<button type='button' class='btn btn-primary btn-xs'><i class=' glyphicon glyphicon-pencil'></i></button>";
-        var removeBtn = "<button type='button' class='btn btn-danger btn-xs'><i class=' glyphicon glyphicon-remove'></i></button>";
+        var pencilBtn = "<button type='button' id='"+roleId+"' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";
+        var removeBtn = "<button type='button' id='"+roleId+"' class='btn btn-danger btn-xs deleteBtn'><i class=' glyphicon glyphicon-remove'></i></button>";
 
         var buttonTd = "<td>"+checkBtn+" "+ pencilBtn +" "+removeBtn+"</tr>";
 
@@ -98,7 +98,7 @@ function generateNavigator(pageInfo) {
         current_page : pageInfo.pageNum - 1,                // Pagination内部使用pageIndex来管理页码，pageIndex从0开始，pageNum从1开始
         prev_text : "上一页",                                 // 上一页按钮上显示的文本
         next_text : "下一页"                                  // 下一页按钮上显示的文本
-    }
+    };
 
     // 调用pagination()函数
     $("#Pagination").pagination(totalRecord, properties);
@@ -109,9 +109,33 @@ function paginationCallBack(pageIndex, jQuery) {
     //修改window对象的pageNum属性
     window.pageNum = pageIndex +1;
 
+    // 设置全选按钮不被选中
+    $("#summaryBox").prop("checked", false);
     // 调用分页函数
     generatePage();
 
     // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
     return false;
+}
+
+// 确实删除的模态框显示函数及操作
+function showConfirmModal(roleArray) {
+    // 显示确认删除模态框
+    $("#removeModal_role_confirm").modal("show");
+    // 声明全局变量存储需要删除的role 的id
+    window.arrayRole = [];
+
+    // 清除旧数据
+    $("#deleteRoleDiv").empty();
+
+    // 遍历数组 显示要被删除的角色
+    for(var i = 0; i<roleArray.length; i++){
+        var role = roleArray[i];
+        var roleName = role.name;
+        $("#deleteRoleDiv").append(roleName+"<br/>")
+
+        // 将要被删除的角色存入全局变量
+        window.arrayRole.push(role.roleId);
+    }
+    
 }

@@ -84,14 +84,14 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
     select 
     <include refid="Base_Column_List" />
     from T_ROLE
     where ID = #{id,jdbcType=DOUBLE}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 
     delete from T_ROLE
     where ID = #{id,jdbcType=DOUBLE}
