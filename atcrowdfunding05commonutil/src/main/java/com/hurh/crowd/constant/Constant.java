@@ -24,4 +24,6 @@ public class Constant {
 
 
     public static final String MESSAGE_ROLE_FAILED_ALREADY_IN_USE = "角色已经存在!";
+    public static final String MESSAGE_ROLE_FAILED_NO_CHANGE = "角色名未做任何更改!";
+    public static final String MESSAGE_ROLE_FAILED_NO_ID = "未获取到角色ID!";
 }
