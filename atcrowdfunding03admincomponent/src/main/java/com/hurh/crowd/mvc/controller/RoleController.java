@@ -6,9 +6,12 @@ import com.hurh.crowd.service.aop.RoleService;
 import com.hurh.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @PackAgeName:com.hurh.crowd.mvc.controller
@@ -45,6 +48,33 @@ public class RoleController {
         roleService.saveRole(roleName);
 
         // 封装ResultEntity对象中返回 若抛出异常 则由异常处理机制进行处理
+        return ResultEntity.successWithoutData();
+    }
+
+    /**
+     * 更新role
+     * @Param: [role, inputStr, pageNum, pageSize]
+     * @return: com.hurh.crowd.util.ResultEntity<java.lang.String>
+     */
+    @ResponseBody
+    @RequestMapping("/editRole.json")
+    public ResultEntity<String>  editRole(Role role,
+                           @RequestParam(value = "inputStr", defaultValue = "") String inputStr,
+                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize ){
+
+        int i = roleService.editRoleById(role);
+
+        return ResultEntity.successWithoutData();
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/deleteRole.json")
+    public ResultEntity<String>  deleteRole(@RequestBody List<Integer> integerList){
+
+        roleService.deleteRolesByID(integerList);
+
         return ResultEntity.successWithoutData();
     }
 }
