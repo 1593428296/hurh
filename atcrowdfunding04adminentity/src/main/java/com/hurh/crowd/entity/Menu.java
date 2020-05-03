@@ -47,7 +47,7 @@ public class Menu {
 				+ children + ", open=" + open + "]";
 	}
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class Menu {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getUrl() {
@@ -76,7 +76,7 @@ public class Menu {
     }
 
     public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+        this.url = url;
     }
 
     public String getIcon() {
@@ -84,23 +84,22 @@ public class Menu {
     }
 
     public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
+        this.icon = icon;
     }
 
-	public List<Menu> getChildren() {
-		return children;
-	}
+    public List<Menu> getChildren() {
+        return children;
+    }
 
-	public void setChildren(List<Menu> children) {
-		this.children = children;
-	}
+    public void setChildren(List<Menu> children) {
+        this.children = children;
+    }
 
-	public Boolean getOpen() {
-		return open;
-	}
+    public Boolean getOpen() {
+        return open;
+    }
 
-	public void setOpen(Boolean open) {
-		this.open = open;
-	}
-    
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
 }
