@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.hurh.crowd.entity.Role;
 import com.hurh.crowd.entity.RoleExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
@@ -41,5 +43,9 @@ public interface RoleMapper {
 
     List<Role> getRolesByInputStr(String inputStr);
 
-    Role getSeq_Role_id();
+    List<Role> getAssignRoles(Map map);
+
+    void saveNewrelationship(Map map);
+
+    void deleteRelatuionShip(Map map);
 }

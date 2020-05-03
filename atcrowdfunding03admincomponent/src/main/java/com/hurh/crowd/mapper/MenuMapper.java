@@ -27,4 +27,14 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+
+
+    /**
+     * 获取全部的menu对象
+     * @Param: []
+     * @return: java.util.List<com.hurh.crowd.entity.Menu>
+     */
+    List<Menu> getAllMenu();
+
+
 }

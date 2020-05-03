@@ -27,8 +27,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
-
-    Admin getSeq_T_admin_id();
     /*
      * @Author: hrh
      * @Description: 获取用户
@@ -37,4 +35,6 @@ public interface AdminMapper {
      * @return java.util.List<com.hurh.crowd.entity.Admin>
      **/
     List<Admin> getAdminByKeyWord(String inputStr);
+
+    List<Admin> selectByLoginAcct(String loginAcct);
 }

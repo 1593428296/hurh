@@ -5,10 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.hurh.crowd.constant.Constant;
 import com.hurh.crowd.entity.Admin;
 import com.hurh.crowd.entity.AdminExample;
+import com.hurh.crowd.entity.Role;
 import com.hurh.crowd.exception.LoginAcctAlreadyExistsException;
 import com.hurh.crowd.exception.LoginAcctAlreadyExistsForUpdateException;
 import com.hurh.crowd.exception.LoginFailedException;
 import com.hurh.crowd.mapper.AdminMapper;
+import com.hurh.crowd.mapper.RoleMapper;
+import com.hurh.crowd.mapper.UtilMapper;
+import com.hurh.crowd.mvc.config.CommUtils;
 import com.hurh.crowd.service.aop.AdminService;
 import com.hurh.crowd.util.CrowdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +20,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @PackAgeName:com.hurh.crowd.service.impl
@@ -32,6 +37,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private UtilMapper utilMapper;
 
     @Override
     public void updateAdmin(Admin admin) {
@@ -78,7 +89,7 @@ public class AdminServiceImpl implements AdminService {
         if (passWord == null || passWord.length() == 0) {
             throw new LoginFailedException(Constant.MESSAGE_LOGIN_FAILED_INVALIDATE_PASSWORD);
         }
-
+/*
         // 根据账号查询Admin信息
         // 创建AdminExample对象
         AdminExample adminExample = new AdminExample();
@@ -86,8 +97,8 @@ public class AdminServiceImpl implements AdminService {
         AdminExample.Criteria criteria = adminExample.createCriteria();
         // 在Criteria中封装参数
         criteria.andLoginAcctEqualTo(loginAcct);
-        //调用adminMapper方法查询
-        List<Admin> adminList = adminMapper.selectByExample(adminExample);
+        //调用adminMapper方法查询*/
+        List<Admin> adminList = adminMapper.selectByLoginAcct(loginAcct);
 
         if (adminList == null || adminList.size() == 0) {
             throw new LoginFailedException(Constant.MESSAGE_LOGIN_FAILED_ACCOUNT_NOT_EXIST);
@@ -120,8 +131,7 @@ public class AdminServiceImpl implements AdminService {
 
         admin.setCreateTime(createTime);
 
-        Admin admin1 = adminMapper.getSeq_T_admin_id();
-        admin.setId(admin1.getId());
+        admin.setId(utilMapper.getSeq_T_admin_id());
 
 
         try {

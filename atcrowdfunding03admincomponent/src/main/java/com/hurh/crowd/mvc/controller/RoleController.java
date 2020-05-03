@@ -6,10 +6,7 @@ import com.hurh.crowd.service.aop.RoleService;
 import com.hurh.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +17,16 @@ import java.util.List;
  * @Author:hrh
  * @Date:2020/4/29
  */
-@Controller
+//@Controller
+//@ResponseBody
+@RestController
 @RequestMapping("/role")
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
 
-    @ResponseBody
+    //@ResponseBody
     @RequestMapping("/getPageBean_role.json")
     public ResultEntity<PageInfo<Role>> getPageBean_role(@RequestParam(value = "inputStr", defaultValue = "") String inputStr,
                                                          //使用@RequestParam注解的defaultValue指定默认值 在传入的参数为空时使用默认值
@@ -41,7 +40,7 @@ public class RoleController {
         return ResultEntity.successWithData(roles);
     }
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping("/saveRole.json")
     public ResultEntity<String> saveRole(@RequestParam("roleName") String roleName) {
 
@@ -56,7 +55,7 @@ public class RoleController {
      * @Param: [role, inputStr, pageNum, pageSize]
      * @return: com.hurh.crowd.util.ResultEntity<java.lang.String>
      */
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping("/editRole.json")
     public ResultEntity<String>  editRole(Role role,
                            @RequestParam(value = "inputStr", defaultValue = "") String inputStr,
@@ -69,7 +68,7 @@ public class RoleController {
     }
 
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping("/deleteRole.json")
     public ResultEntity<String>  deleteRole(@RequestBody List<Integer> integerList){
 

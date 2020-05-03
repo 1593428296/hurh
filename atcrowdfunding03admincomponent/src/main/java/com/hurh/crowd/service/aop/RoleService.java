@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hurh.crowd.entity.Role;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @PackAgeName:com.hurh.crowd.service.aop
@@ -41,4 +42,14 @@ public interface RoleService {
      * @return: void
      */
     int deleteRolesByID(List<Integer> integerList);
+
+
+    /**
+     *  分配角色 已分配和未分配
+     * @Param: [adminId]
+     * @return: java.util.List<com.hurh.crowd.entity.Role>
+     */
+    List<Role> getAssignedRoles(Map map);
+
+    void saveRelationship(Integer adminId, List<Integer> integerList);
 }
