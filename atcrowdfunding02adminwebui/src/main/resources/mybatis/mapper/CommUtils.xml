@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurh.crowd.mapper.UtilMapper">
+    <select id="getSeq_inner_admin_role_id" resultType="java.lang.Integer">
+        select SEQ_inner_admin_role_ID.nextVal as id from dual
+    </select>
+
+    <select id="getSeq_Role_id" resultType="java.lang.Integer">
+        SELECT seq_role_id.nextval as id FROM dual
+    </select>
+
+    <select id="getSeq_T_admin_id" resultType="java.lang.String">
+        SELECT seq_admin_id.nextval as id FROM dual
+    </select>
+
+    <select id="getSeq_Menu_id" resultType="java.lang.Integer">
+        SELECT seq_menu_id.nextval as id FROM dual
+    </select>
+</mapper>

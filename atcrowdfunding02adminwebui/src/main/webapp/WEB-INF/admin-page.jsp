@@ -59,7 +59,7 @@
                                            <td>${admin.email}</td>
                                            <td>${admin.createTime}</td>
                                            <td>
-                                               <button type="button" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-check"></i></button>
+                                               <a href="assign/toAssignPage.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&inputStr=${param.inputStr}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-check"></i></a>
                                                <a href="admin/toEditPage.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&inputStr=${param.inputStr}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                                <a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.inputStr}.html" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                                            </td>

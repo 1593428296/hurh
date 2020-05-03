@@ -240,7 +240,15 @@
         or a.email like '%'||#{inputStr}||'%'
   </select>
 
-  <select id="getSeq_T_admin_id" resultMap="BaseResultMap">
-        SELECT seq_admin_id.nextval as id FROM dual
+  <select id="selectByLoginAcct" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT a.id as id,
+    a.login_acct AS login_acct,	<!--	登录账号:varchar2(255)	-->
+    a.user_pswd AS user_pswd,	<!--	登录密码:varchar2(32)	-->
+    a.user_name AS user_name,	<!--	昵称:varchar2(255)	-->
+    a.email AS email,	<!--	邮件地址:varchar2(255)	-->
+    a.create_time AS create_time	<!--	创建时间:char(19)	-->
+    FROM t_admin a
+    WHERE login_acct =#{loginAcct}
   </select>
+
 </mapper>

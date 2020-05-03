@@ -180,7 +180,28 @@
      where name like '%' ||#{inputStr}||'%'
   </select>
 
-  <select id="getSeq_Role_id" resultMap="BaseResultMap">
-        SELECT seq_role_id.nextval as id FROM dual
+  <select id="getAssignRoles" resultMap="BaseResultMap" parameterType="Map" >
+    select id,name from t_role
+    where 1 = 1
+    <if test="isAssign=='yes'">
+        and  id in (select role_id from inner_admin_role where admin_id = #{id} )
+    </if>
+    <if test="isAssign=='no'">
+      and  id not in (select role_id from inner_admin_role where admin_id = #{id} )
+    </if>
   </select>
+
+  <delete id="deleteRelatuionShip" parameterType="map">
+      delete from inner_admin_role where admin_id = #{admin_id} and role_id = #{role_id}
+  </delete>
+
+  <insert id="saveNewrelationship" parameterType="map">
+      insert into inner_admin_role (id,admin_id, role_id, create_time )
+      VALUES (
+      #{id},
+      #{admin_id},
+      #{role_id},
+      #{createTime}
+      )
+  </insert>
 </mapper>
