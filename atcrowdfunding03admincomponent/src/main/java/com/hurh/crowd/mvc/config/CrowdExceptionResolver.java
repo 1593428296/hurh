@@ -27,17 +27,16 @@ import java.io.IOException;
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
-
     /*
-     * @Author: hrh
-     * @Description: 算术运算异常处理
-     * @Date: 2020/4/25 20:27
-     * @Param: [exception, request, response]
-     * @return org.springframework.web.servlet.ModelAndView
-     **/
-    @ExceptionHandler(value = ArithmeticException.class)
-    public ModelAndView resolveMathException(
-            ArithmeticException exception,
+   * @Author: hrh
+   * @Description: 没有登陆就访问受保护资源
+   * @Date: 2020/4/25 20:27
+   * @Param: [exception, request, response]
+   * @return org.springframework.web.servlet.ModelAndView
+   **/
+    @ExceptionHandler(value = Exception.class)
+    public ModelAndView resolveException(
+            Exception exception,
             HttpServletRequest request,
             HttpServletResponse response) throws IOException {
 
@@ -85,7 +84,7 @@ public class CrowdExceptionResolver {
 
     /*
      * @Author: hrh
-     * @Description: 注册时 检测账号是否存在抛出的异常
+     * @Description: 更新时 检测账号是否存在抛出的异常
      * @Date: 2020/4/25 20:27
      * @Param: [exception, request, response]
      * @return org.springframework.web.servlet.ModelAndView

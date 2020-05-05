@@ -17,6 +17,7 @@ import com.hurh.crowd.service.aop.AdminService;
 import com.hurh.crowd.util.CrowdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +44,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private UtilMapper utilMapper;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void updateAdmin(Admin admin) {
@@ -121,8 +125,9 @@ public class AdminServiceImpl implements AdminService {
 
     public void saveAdmin(Admin admin) {
 
+        // 秘密加密
         String passWord = admin.getUserPswd();
-        passWord = CrowdUtil.md5(passWord);
+        passWord = passwordEncoder.encode(passWord);
         admin.setUserPswd(passWord);
 
         Date date = new Date();

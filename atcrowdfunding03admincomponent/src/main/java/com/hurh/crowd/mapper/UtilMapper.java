@@ -38,4 +38,18 @@ public interface UtilMapper {
      * @return: java.util.List<com.hurh.crowd.entity.Menu>
      */
     Integer getSeq_Menu_id();
+
+    /**
+     * 获取权限表序列
+     * @Param:
+     * @return:
+     */
+    Integer getSeq_auth_id();
+
+    /**
+     * 获取角色-权限表序列
+     * @Param:
+     * @return:
+     */
+    Integer getSeq_inner_role_auth_id();
 }

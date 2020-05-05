@@ -5,6 +5,7 @@ import com.hurh.crowd.entity.Role;
 import com.hurh.crowd.service.aop.RoleService;
 import com.hurh.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+    @PreAuthorize("hasRole('部长')")
     //@ResponseBody
     @RequestMapping("/getPageBean_role.json")
     public ResultEntity<PageInfo<Role>> getPageBean_role(@RequestParam(value = "inputStr", defaultValue = "") String inputStr,
