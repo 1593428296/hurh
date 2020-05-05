@@ -29,12 +29,14 @@
 
 <div class="container">
 
-    <form class="form-signin" action="admin/loginCheck.html" method="post" role="form">
+    <form class="form-signin" action="security/loginCheck.html" method="post" role="form">
         <h2 class="form-signin-heading">
             <i class="glyphicon glyphicon-log-in"></i> 管理员登录
         </h2>
         <!--登录失败时显示的消息-->
         <p style="color: red;">${requestScope.exception.message}</p>
+        <p>${SPRING_SECURITY_LAST_EXCEPTION.message}</p>
+        <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
         <div class="form-group has-success has-feedback">
             <input type="text" name="loginAcct" value="hurh" class="form-control" id="inputSuccess4" placeholder="请输入登录账号" autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>

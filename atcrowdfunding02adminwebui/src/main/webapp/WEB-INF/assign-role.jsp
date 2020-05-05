@@ -26,7 +26,6 @@
                                 <c:forEach items="${requestScope.unAssignedRoles}" var="role">
                                     <option value="${role.id}">${role.name}</option>
                                 </c:forEach>
-                                <option value="pm">PM</option>
                             </select>
                         </div>
                         <div class="form-group">

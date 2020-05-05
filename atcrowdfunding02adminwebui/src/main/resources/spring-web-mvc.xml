@@ -45,6 +45,7 @@
                 <!-- key属性指定异常全类名 -->
                 <!-- 标签体中写对应的视图（这个值要拼前后缀得到具体路径） -->
                 <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.hurh.crowd.exception.AccessForbiddenException">admin-login</prop>
             </props>
         </property>
     </bean>
@@ -56,20 +57,20 @@
     <mvc:view-controller path="/role/rolePage.html" view-name="role-Page"/>
     <mvc:view-controller path="/menu/toMenu.html" view-name="menu-page"/>
 
-    <!--注册拦截器-->
-    <mvc:interceptors>
+    <!--注册拦截器:使用SpringSecurity-->
+   <!-- <mvc:interceptors>
         <mvc:interceptor>
-            <!--mvc:mapping配置要拦截的资源-->
-            <!--/*对应一层路径 如/Adminaaa-->
-            <!--/**对应多层路径 大于等于两层-->
+            mvc:mapping配置要拦截的资源
+            /*对应一层路径 如/Adminaaa
+            /**对应多层路径 大于等于两层
             <mvc:mapping path="/**"/>
 
-            <!--mvc:exclude-mapping：不需要拦截的资源-->
+            mvc:exclude-mapping：不需要拦截的资源
             <mvc:exclude-mapping path="/admin/loginCheck.html"/>
             <mvc:exclude-mapping path="/admin/login.html"/>
             <mvc:exclude-mapping path="/admin/logOut.html"/>
-            <!--拦截器的类-->
+            拦截器的类
             <bean class="com.hurh.crowd.mvc.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 </beans>

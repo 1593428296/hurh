@@ -16,4 +16,12 @@
     <select id="getSeq_Menu_id" resultType="java.lang.Integer">
         SELECT seq_menu_id.nextval as id FROM dual
     </select>
+
+    <select id="getSeq_auth_id" resultType="java.lang.Integer">
+        SELECT seq_auth_id.nextval as id FROM dual
+    </select>
+
+    <select id="getSeq_inner_role_auth_id" resultType="java.lang.Integer">
+        SELECT seq_inner_role_auth_id.nextval as id FROM dual
+    </select>
 </mapper>

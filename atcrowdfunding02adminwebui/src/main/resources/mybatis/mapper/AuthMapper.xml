@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurh.crowd.mapper.AuthMapper">
+  <resultMap id="BaseResultMap" type="Auth">
+    <id column="ID" jdbcType="DOUBLE" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CATEGORY_ID" jdbcType="DOUBLE" property="category_id" />
+    <result column="CREATE_TIME" jdbcType="CHAR" property="create_time" />
+  </resultMap>
+
+  <select id="getAssignedAuthIdByRoleId" resultType="integer">
+      select auth_id from inner_role_auth where role_id=#{roleId}
+  </select>
+
+  <select id="getAllAuths" resultMap="BaseResultMap">
+     SELECT id,name,title,category_id,create_time from t_auth
+  </select>
+
+  <insert id="insertInnerRoleAuth" parameterType="map">
+    INSERT INTO inner_role_auth a (
+       a.id,
+       a.role_id,
+       a.auth_id,
+       a.create_time
+    )VALUES(
+       #{id},
+       #{role_id},
+       #{auth_id},
+       #{create_time}
+    )
+  </insert>
+
+  <delete id="removeInnerRoleAuth" parameterType="map">
+    delete from inner_role_auth where role_id = #{role_id} and auth_id =#{auth_id}
+  </delete>
+
+    <select id="getAssignedAuthByAdminId" resultType="string">
+        select distinct t_auth.name  from t_auth
+                left join inner_role_auth on t_auth.id = inner_role_auth.auth_id
+                left join inner_admin_role on inner_admin_role.role_id = inner_role_auth.role_id
+                where inner_admin_role.admin_id = #{adminId} and t_auth.name is not null
+    </select>
+</mapper>
