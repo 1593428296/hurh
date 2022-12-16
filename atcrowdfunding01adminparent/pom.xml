@@ -17,7 +17,7 @@
 
     <properties>
         <!-- 声明属性，对Spring的版本进行统一管理 -->
-        <com.hurh.spring.version>4.3.20.RELEASE</com.hurh.spring.version>
+        <com.hurh.spring.version>5.2.20.RELEASE</com.hurh.spring.version>
         <com.hurh.spring.security.version>4.2.10.RELEASE</com.hurh.spring.security.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
